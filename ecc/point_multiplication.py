@@ -28,7 +28,7 @@ def add(p: Point, q: Point, mod: int) -> Point:
     if p[0] == q[0]:
         return 0
     slope = ((q[1] - p[1]) * mod_multiplicative_inverse(q[0] - p[0], mod)) % mod
-    x = (slope**2 - p[0] - q[0]) % mod
+    x = (slope * slope - p[0] - q[0]) % mod
     y = (slope * (p[0] - x) - p[1]) % mod
     return (x, y)
 
@@ -36,9 +36,9 @@ def add(p: Point, q: Point, mod: int) -> Point:
 def double(p: Point, a: int, mod: int) -> Point:
     if p == 0:
         return 0
-    slope = ((3 * p[0] ** 2 + a) * mod_multiplicative_inverse(2 * p[1], mod)) % mod
+    slope = ((3 * p[0] * p[0] + a) * mod_multiplicative_inverse(2 * p[1], mod)) % mod
     q = p
-    x = (slope**2 - p[0] - q[0]) % mod
+    x = (slope * slope - p[0] - q[0]) % mod
     y = (slope * (p[0] - x) - p[1]) % mod
     return (x, y)
 
